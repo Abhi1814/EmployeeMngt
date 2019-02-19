@@ -199,8 +199,46 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	
 
 	public List<Employee> getEmployees() {
-		// TODO Auto-generated method stub
+		
+		String query = "select * from employee";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet=null;
+		ArrayList<Employee> employees = new ArrayList<>();
+		try{
+			connection = dbuTILS.getConnection();
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next())
+			{
+				
+				String id = resultSet.getString("id");
+				String firstname = resultSet.getString("firstname");
+				String lastname = resultSet.getString("lastname");
+				float salary = resultSet.getFloat("salary");
+				
+				Employee employee = new Employee(id,firstname,lastname,salary);
+				
+			employees.add(employee);
+				
+				
+			}
+			return employees;
+			//return null;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		finally{
+					
+					dbuTILS.closeConnection(connection);
+					
+				}
 		return null;
+		
 	}
 
 }

@@ -27,11 +27,15 @@ public class main {
 		String result1 = employeeService.updateEmployee(null, employee);
 		String result2 = employeeService.deleteEmployee(null);
 		Employee result3 = employeeService.getEmployee("765355");
-		System.out.println("Id: "+ result3.getEmployeeId() +"First NAme: "+ result3.getFirstName());
+	//	System.out.println("Id: "+ result3.getEmployeeId() +"First NAme: "+ result3.getFirstName());
 		List<Employee> result4 = employeeService.getEmployeesByName("Rahul");
+		List<Employee> result5 = employeeService.getEmployees();
 		
 		for(Employee e: result4){
 			System.out.println("Id: "+ e.getEmployeeId() +"First NAme: "+ e.getFirstName());
+		}
+		for(Employee e: result5){
+			System.out.println("Id: "+ e.getEmployeeId() +"First NAme: "+ e.getFirstName()+ "last Name : "+ e.getLastName() + "Salary : "+ e.getSalary()  );
 		}
 		
 	}
